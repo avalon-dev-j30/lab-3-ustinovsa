@@ -23,20 +23,19 @@ public class FileDeleteAction implements Action {
         this.target = Paths.get(target);
     }
 
-    private void delete() {
+    private synchronized void delete() {
         if (!Files.exists(target)) {
             out.printf("%s does not exist.", target.getFileName().toString());
         } else {
-            try {
-                Files.delete(target);
-                out.printf("%s has been deleted",
-                        target.getFileName().toString());
-
-            } catch (IOException ex) {
-                ex.getMessage();
-            } finally {
-                close();
-            }
+                try {
+                    Files.delete(target);
+                    out.printf("%s has been deleted",
+                            target.getFileName().toString());
+                } catch (IOException ex) {
+                    ex.getMessage();
+                } finally {
+                    close();
+                }
         }
     }
 

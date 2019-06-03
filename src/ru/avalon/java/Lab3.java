@@ -29,7 +29,7 @@ public class Lab3 extends ConsoleUI<Commands> {
             = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
-        System.out.printf("Type help to see list of commands.%n");
+        System.out.printf("Type help to see list of commands.%n>");
         new Lab3().run();
     }
 
@@ -53,6 +53,15 @@ public class Lab3 extends ConsoleUI<Commands> {
         char type;
         
         switch (command) {
+            case help:
+                System.out.printf("show - show all entries in directory from path"
+                        + "%ncopy - copy target file or directory to target path"
+                        + "%nmove - move target file or directory to target path"
+                        + "%ndelete - delete target file or empty directory"
+                        + "%ncreate - create file or directory at target path"
+                        + "%nexit - exit programm"
+                        + "%nEnter command:%n>");
+                break;
             case scan:
                 System.out.println("Enter path:");
                 target = in.readLine();

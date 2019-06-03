@@ -26,11 +26,10 @@ public class FileCreateAction implements Action {
 
     }
 
-    private void create() {
+    private synchronized void create() {
         if (Files.exists(target)) {
             out.printf("%s cannot be created because of same object exist.", target.getFileName().toString());
         } else {
-
             try {
                 if (type != 'd') {
                     Files.createFile(target);
@@ -43,9 +42,8 @@ public class FileCreateAction implements Action {
                 }
             } catch (IOException ex) {
                 ex.getMessage();
-            } finally {
                 close();
-            }
+            } 
         }
     }
 

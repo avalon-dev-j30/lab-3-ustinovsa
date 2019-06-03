@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class FileScanAction implements Action {
 
-    private Path path;
+    private final Path path;
     private BufferedOutputStream bos;
 
     public FileScanAction(String path, OutputStream out) {
@@ -46,8 +46,10 @@ public class FileScanAction implements Action {
 
          // Если путь существует, выводим его и ниже список вхождений 
         out.println(path.toString());
+        
         try ( DirectoryStream<Path> ds = Files.newDirectoryStream(path)) {
-            for (Path p : ds) {
+            synchronized(path) {
+                for (Path p : ds) {
                 byte[] buffer = p.getFileName().toString().getBytes();
                 bos.write(buffer, 0, buffer.length);
                 if (isDirectory(p)) {
@@ -55,8 +57,8 @@ public class FileScanAction implements Action {
                 } else {
                     out.printf("%n(file) %s", p.getFileName());
                 }
-            }
-            out.printf("%n>");
+            }out.printf("%n>");
+            }  
         } catch (IOException ex) {
             out.printf("An error has occured. Error : %n%s", ex.getMessage());
         }

@@ -36,7 +36,7 @@ public class FileMoveAction implements Action {
         move();
     }
 
-    private void move() {
+    private synchronized void move() {
         if (!Files.exists(movingObject)) {
             out.printf("%s does not exist.", movingObject.getFileName().toString());
         } else if (!Files.exists(targetPath)) {

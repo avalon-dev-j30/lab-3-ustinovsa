@@ -35,24 +35,19 @@ public class FileCopyAction implements Action {
         copy();
     }
 
-    private void copy() {
+    private synchronized void copy() {
         if (!Files.exists(from)) {
             out.printf("%s does not exist.", from.getFileName().toString());
         } else if (!Files.exists(to)) {
             try {
                 Files.createDirectory(to);
-            } catch (IOException ex) {
-                out.printf("Target path does not exist and can't be created. Because of error: %n%s%n",
-                        ex.getMessage());
-            }
-        } else {
-            try {
                 Files.copy(from, to, REPLACE_EXISTING);
-                out.printf("%s copied to %s",
+                out.printf("%s copied to %s&n>",
                         from.getFileName().toString(),
                         to.getFileName().toString());
             } catch (IOException ex) {
-                ex.getMessage();
+                out.printf("Target path does not exist and can't be created. Because of error: %n%s%n>",
+                        ex.getMessage());
             } finally {
                 close();
             }
