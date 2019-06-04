@@ -53,20 +53,5 @@ public class FileCopyAction implements Action {
             }
         }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void close() {
-        /*
-         * TODO №5 Реализуйте метод close класса FileMoveAction
-         */
-        try {
-            service.shutdown();
-        } catch (Exception e) {
-            out.printf("An error has occured. Error : %n%s", e.getMessage());
-            service.shutdownNow();
-        }
-    }
 }
+

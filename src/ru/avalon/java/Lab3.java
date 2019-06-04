@@ -51,7 +51,7 @@ public class Lab3 extends ConsoleUI<Commands> {
         String target;
         String to;
         char type;
-        
+
         switch (command) {
             case help:
                 System.out.printf("show - show all entries in directory from path"

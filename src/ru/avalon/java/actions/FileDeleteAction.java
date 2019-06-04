@@ -27,24 +27,15 @@ public class FileDeleteAction implements Action {
         if (!Files.exists(target)) {
             out.printf("%s does not exist.", target.getFileName().toString());
         } else {
-                try {
-                    Files.delete(target);
-                    out.printf("%s has been deleted",
-                            target.getFileName().toString());
-                } catch (IOException ex) {
-                    ex.getMessage();
-                } finally {
-                    close();
-                }
-        }
-    }
-
-    @Override
-    public void close() {
-        try {
-            service.shutdown();
-        } catch (Exception e) {
-            out.printf("An error has occured. Error : %n%s", e.getMessage());
+            try {
+                Files.delete(target);
+                out.printf("%s has been deleted",
+                        target.getFileName().toString());
+            } catch (IOException ex) {
+                ex.getMessage();
+            } finally {
+                close();
+            }
         }
     }
 

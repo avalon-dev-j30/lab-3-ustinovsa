@@ -43,7 +43,7 @@ public class FileCreateAction implements Action {
             } catch (IOException ex) {
                 ex.getMessage();
                 close();
-            } 
+            }
         }
     }
 
