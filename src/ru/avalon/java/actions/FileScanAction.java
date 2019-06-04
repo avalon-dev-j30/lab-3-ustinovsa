@@ -58,7 +58,11 @@ public class FileScanAction implements Action {
             }
         } catch (IOException ex) {
             out.printf("An error has occured. Error : %n%s", ex.getMessage());
+            close();
+        } finally {
+            close();
         }
+        
     }
 
 }
