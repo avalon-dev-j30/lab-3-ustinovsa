@@ -43,16 +43,9 @@ public class FileCreateAction implements Action {
             } catch (IOException ex) {
                 ex.getMessage();
                 close();
+            } finally {
+                close();
             }
-        }
-    }
-
-    @Override
-    public void close() {
-        try {
-            service.shutdown();
-        } catch (Exception e) {
-            out.printf("An error has occured. Error : %n%s", e.getMessage());
         }
     }
 

@@ -62,7 +62,7 @@ public class FileScanAction implements Action {
         } finally {
             close();
         }
-        
+
     }
 
 }
