@@ -64,7 +64,9 @@ public class ConsoleUI<E extends Enum<E>> extends EnumReader<E> implements Runna
      * 
      * @throws IOException в случае ощибки ввода вывода
      */
-    protected void onCommand(E command) throws IOException {}
+    protected void onCommand(E command) throws IOException {
+    
+    }
 
     /**
      * {@inheritDoc}
